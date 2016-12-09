@@ -54,3 +54,14 @@ class ScrapyCrawlerSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class ProxyMiddleware(object):
+    # overwrite process request
+    def process_request(self, request, spider):
+        # Test proxy:
+        #   1) Add 'ProxyMiddleware' to DOWNLOADER_MIDDLEWARES in 'settings.py'
+        #   2) Set 'ROBOTSTXT_OBEY' = False in 'settings.py'
+        #   3) Execute 'scrapy fetch https://wtfismyip.com/text'
+        #
+        # Set the location of the proxy
+        #request.meta['proxy'] = "http://PROXY_IP:PROXY_PORT"
