@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
+import urllib
+#http://stackoverflow.com/questions/16566069/url-decode-utf-8-in-python
 
 class ThepiratebaySpider(scrapy.Spider):
     name = "ThePirateBay"
@@ -15,7 +17,7 @@ class ThepiratebaySpider(scrapy.Spider):
             	yield {
                     'category': torrent.css('td.vertTh a::text')[1].extract(),
                     'title': torrent.css('div.detName a::text').extract_first(),
-                    'magnet': torrent.css('a::attr("href")').re(r'magnet:.*')[0],
+                    'magnet': urllib.unquote(torrent.css('a::attr("href")').re(r'magnet:.*')[0]),
                     'uploader': torrent.css('a.detDesc::text').extract_first(),
                     'size' : torrent.css('font.detDesc::text').re('Size(.*[MG]iB)'),
                 }
