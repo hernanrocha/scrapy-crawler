@@ -12,3 +12,10 @@ class ScrapyCrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+class PAHotelesItem(scrapy.Item):
+	nombre = scrapy.Field()
+	link = scrapy.Field()
+	links_titles = scrapy.Field()
+	links_links = scrapy.Field()
+	
